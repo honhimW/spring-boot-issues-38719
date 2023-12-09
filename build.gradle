@@ -1,0 +1,64 @@
+plugins {
+    id 'idea'
+    id 'java-library'
+    id 'distribution'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '21'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+ext {
+    set('springCloudVersion', "2023.0.0")
+}
+
+allprojects {
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
+
+    repositories {
+        maven { url 'https://repo.spring.io/snapshot' }
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply plugin: 'idea'
+    apply plugin: 'java-library'
+    dependencies {
+        implementation platform('org.springframework.boot:spring-boot-dependencies:3.2.1-SNAPSHOT')
+        implementation platform('org.springframework.cloud:spring-cloud-dependencies:2023.0.0')
+    }
+
+    build {
+        dependsOn 'copyJar'
+    }
+
+    clean {
+        dependsOn 'deleteJar'
+    }
+
+    tasks.register('copyJar', Copy) {
+        from bootJar
+        // working directory is module/build
+        into "${rootProject.projectDir}/.jar-output"
+    }
+
+    tasks.register('deleteJar', Delete) {
+        delete "${rootProject.projectDir}/.jar-output/" + bootJar.archiveFileName.get()
+    }
+}
+
