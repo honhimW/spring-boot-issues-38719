@@ -9,9 +9,6 @@ apply plugin: 'distribution'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    runtimeOnly 'org.springframework.cloud:spring-cloud-starter-bootstrap'
-    implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
-//    runtimeOnly 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2022.0.0.0'
 }
 
 bootJar {

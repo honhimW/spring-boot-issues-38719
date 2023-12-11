@@ -4,14 +4,6 @@ spring:
   threads:
     virtual:
       enabled: true
-  cloud:
-    consul:
-      host: 10.37.1.133
-      port: 8500
-    nacos:
-      discovery:
-        server-addr: 10.37.1.67
-        namespace: dev2
     discovery:
       enabled: true
   webflux:

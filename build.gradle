@@ -43,22 +43,26 @@ subprojects {
         implementation platform('org.springframework.cloud:spring-cloud-dependencies:2023.0.0')
     }
 
-    build {
-        dependsOn 'copyJar'
+    afterEvaluate {
+        if (project.plugins.hasPlugin('org.springframework.boot')) {
+            build {
+                dependsOn 'copyJar'
+            }
+
+            clean {
+                dependsOn 'deleteJar'
+            }
+            tasks.register('copyJar', Copy) {
+                from bootJar
+                // working directory is module/build
+                into "${rootProject.projectDir}/.jar-output"
+            }
+
+            tasks.register('deleteJar', Delete) {
+                delete "${rootProject.projectDir}/.jar-output/" + bootJar.archiveFileName.get()
+            }
+        }
     }
 
-    clean {
-        dependsOn 'deleteJar'
-    }
-
-    tasks.register('copyJar', Copy) {
-        from bootJar
-        // working directory is module/build
-        into "${rootProject.projectDir}/.jar-output"
-    }
-
-    tasks.register('deleteJar', Delete) {
-        delete "${rootProject.projectDir}/.jar-output/" + bootJar.archiveFileName.get()
-    }
 }
 

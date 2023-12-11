@@ -1,4 +1,5 @@
 rootProject.name = 'spring-cloud-2023-test'
 include 'alpha-module'
 include 'beta-module'
+include 'lb-starter'
 
