@@ -23,5 +23,4 @@ public class BetaApplication {
         return "from beta";
     }
 
-
 }

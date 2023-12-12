@@ -13,3 +13,4 @@ logging:
   level:
     root: trace
     org.apache.http: warn
+#    reactor: trace

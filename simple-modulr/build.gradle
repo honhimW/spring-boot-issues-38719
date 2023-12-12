@@ -1,0 +1,23 @@
+plugins {
+    id 'java-library'
+    id 'org.springframework.boot' version '3.2.0'
+}
+
+apply plugin: 'java-library'
+apply plugin: 'org.springframework.boot'
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+    testImplementation 'io.projectreactor:reactor-test'
+}
+
+bootJar {
+    enabled true
+    setMainClass('org.example.simple.SimpleApplication')
+    version ''
+}
+
+test {
+    useJUnitPlatform()
+}

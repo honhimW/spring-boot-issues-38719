@@ -6,8 +6,10 @@ import org.springframework.cloud.client.discovery.simple.reactive.SimpleReactive
 import org.springframework.cloud.client.discovery.simple.reactive.SimpleReactiveDiscoveryProperties;
 import org.springframework.cloud.loadbalancer.core.CachingServiceInstanceListSupplier;
 import org.springframework.cloud.loadbalancer.core.DiscoveryClientServiceInstanceListSupplier;
+import org.springframework.cloud.loadbalancer.core.RandomLoadBalancer;
 import org.springframework.cloud.loadbalancer.core.ServiceInstanceListSupplier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.mock.env.MockEnvironment;
 
 import java.util.List;
@@ -18,9 +20,10 @@ import java.util.Map;
  * @since 2023-12-11
  */
 
+@Import(LoadBalancerConfig.class)
 public class ILoadBalancerAutoConfiguration {
 
-    @Bean
+//    @Bean
     ServiceInstanceListSupplier cachingServiceInstanceListSupplier() {
         ConcurrentMapCacheManager cacheManager = new ConcurrentMapCacheManager();
         SimpleReactiveDiscoveryProperties simpleDiscoveryProperties = new SimpleReactiveDiscoveryProperties();

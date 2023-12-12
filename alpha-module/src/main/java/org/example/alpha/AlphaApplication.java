@@ -9,6 +9,8 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 @RestController
 @SpringBootApplication
@@ -39,4 +41,9 @@ public class AlphaApplication {
         return "hello world";
     }
 
+    @RequestMapping("/foo")
+    public Mono<String> foo() {
+        return Mono.fromSupplier(() -> "bar")
+            .subscribeOn(Schedulers.boundedElastic());
+    }
 }
