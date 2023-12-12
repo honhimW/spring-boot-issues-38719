@@ -15,6 +15,7 @@ dependencies {
 }
 
 bootJar {
+//    loaderImplementation = org.springframework.boot.loader.tools.LoaderImplementation.CLASSIC
     enabled true
     setMainClass('org.example.beta.BetaApplication')
     version ''

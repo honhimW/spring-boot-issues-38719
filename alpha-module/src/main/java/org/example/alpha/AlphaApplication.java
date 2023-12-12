@@ -20,7 +20,7 @@ public class AlphaApplication {
         String property = System.getProperty("reactor.schedulers.defaultBoundedElasticOnVirtualThreads");
         log.info("enable reactor scheduler bounded on virtual threads: {}", property);
         try {
-            Class<?> aClass = Class.forName("reactor.core.publisher.MonoIgnoreElements$IgnoreElementsSubscriber");
+            Class<?> aClass = Class.forName("reactor.core.Exceptions");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
