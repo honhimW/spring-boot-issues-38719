@@ -13,7 +13,7 @@ import java.time.Duration;
  * @since 2023-12-12
  */
 
-@Component
+//@Component
 public class RequestRunner implements ApplicationRunner {
 
     @Override
